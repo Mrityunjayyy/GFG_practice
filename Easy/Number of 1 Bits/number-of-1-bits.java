@@ -23,20 +23,13 @@ class GFG {
 // User function Template for Java
 class Solution {
     static int setBits(int N) {
-        ArrayList<Integer> al = new ArrayList<Integer>();
-        int count = 0;
+        int count = 0 ; 
         while(N > 0)
-        { 
-            al.add(N%2);
-            N = N/2 ; 
-        } 
-        
-        for(int i  = 0 ; i < al.size() ; i++)
-        { 
-            if(al.get(i) == 1)
+        {
+            int rsbm = N & -N ;
+            N = N - rsbm; 
             count++;
         }
-        
         
         return count;
     }
