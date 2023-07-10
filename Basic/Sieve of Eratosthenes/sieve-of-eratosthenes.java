@@ -29,34 +29,28 @@ class GFG
 //User function Template for Java
 class Solution{
     static ArrayList<Integer> sieveOfEratosthenes(int N){
-    ArrayList<Integer> al = new ArrayList<Integer>();
-     boolean[] isPrime = new boolean[N+1];
-     Arrays.fill(isPrime , true);
-     
-     isPrime[0] = false;
-     isPrime[1] = false; 
-     
-     EratosThenes(isPrime , N);
-     
-     for(int i = 0 ; i <= N ; i++)
-     { 
-         if(isPrime[i])
-         al.add(i);
-     }
-     
-     
-     return al;
-     
-    }
-    
-    public static void EratosThenes(boolean[] isPrime , int N)
-    {
-      for(int i = 2 ; i * i <= N ; i++)
-      {
-          for(int j = 2*i ; j <= N ; j = j + i)
+        boolean[] primeNumbers = new boolean[N+1];
+        Arrays.fill(primeNumbers, true);
+        ArrayList<Integer> al = new ArrayList<Integer>();
+        primeNumbers[0] = false; //0 
+        primeNumbers[1] = false; //1 is neither prime nor composite
+       
+       for(int i = 2 ; i * i <=  N ; i++)
+       { 
+           for(int j = 2 * i ; j <= N ; j = j + i)
+           { 
+               primeNumbers[j] = false;
+           }
+       }
+          
+          
+          for(int i = 2; i <= N; i++) 
           { 
-              isPrime[j] = false;
+              if(primeNumbers[i])
+              al.add(i);
           }
-      }
+          
+          
+          return al;
     }
 }
