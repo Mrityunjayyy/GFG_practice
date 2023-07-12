@@ -47,6 +47,14 @@ class Solution
     }
     static int partition(int arr[], int low, int high)
     {
+        
+        int randomIndex = low + (int)Math.random() % (high - low + 1);
+        int tem = arr[randomIndex];
+        arr[randomIndex] = arr[low];
+        arr[low] = tem;
+        
+        
+        
         //pivot as the first element in the array
        int pivot = arr[low];
        int i = low;
