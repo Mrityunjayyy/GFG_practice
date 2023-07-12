@@ -62,7 +62,7 @@ class Solution
     {
         long a = N; 
         long b = R;
-        long n = 1_000_000_00_7L;
+        long n = 1_000_000_00_7L;   // 10^9 + 7
         long result = 1L;
         
         while(b > 0)
@@ -72,7 +72,9 @@ class Solution
                 result = (result % n * a % n) %n ;
             }
             
-            a = (a %n * a%n) %n;
+            a = (a %n * a%n) %n;   // a  = a*a ;
+            
+            //b = b/2;
             b = b >> 1;    // this is right shift by 1 meaning divide by 2 
         } 
             
