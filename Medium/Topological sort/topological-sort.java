@@ -63,41 +63,54 @@ class Solution
     //Function to return list containing vertices in Topological order. 
     static int[] topoSort(int V, ArrayList<ArrayList<Integer>> adj) 
     {
-       boolean[] vis = new boolean[V];
-       Deque<Integer> stack = new ArrayDeque<Integer>();
-       
-       for(int i = 0 ; i < V ; i++)
-       {
-           if(vis[i] == false)
-           {
-               dfs(i , adj , vis , stack);
-           }
-       }
-       
-       int i = 0 ; 
-       int[] ans = new int[stack.size()];
-       while(!stack.isEmpty())
-       {
-           ans[i] = stack.pop();
-           i = i + 1;
-       }
-       
-       return ans;
+        ArrayList<Integer> ans = new ArrayList<>();
+        int[] inDegree = new int[V];
+            
+          for(ArrayList<Integer> al : adj)
+          {
+              for(Integer a : al)
+              {
+                  inDegree[a]++;
+              }
+          }
+          
+          bfs(V , adj , ans , inDegree);
+      
+       int[] temp = new int[ans.size()];
+        for(int i = 0 ; i < ans.size() ; i++)
+        {
+            temp[i] = ans.get(i).intValue();
+        }
+        
+        
+        return temp;
     }
     
-    public static void dfs(int v, ArrayList<ArrayList<Integer>> adj ,
-    boolean[] vis ,Deque<Integer> stack )
+    
+    public static void bfs(int v, ArrayList<ArrayList<Integer>> adj , 
+    ArrayList<Integer> ans , int[] inDegree)
     {
-        vis[v] = true;
+        Queue<Integer> q = new LinkedList<Integer>();
         
-        for(Integer it : adj.get(v))
+        
+        for(int i = 0 ; i < v ; i++)
         {
-            if(vis[it] == false)
+            if(inDegree[i] == 0)
             {
-                dfs(it , adj , vis , stack);
+                q.add(i);
             }
         }
         
-        stack.push(v);
+        while(!q.isEmpty())
+        {
+            Integer ele  = q.remove();
+            ans.add(ele);
+            
+            for(Integer it : adj.get(ele))
+            {
+                if(--inDegree[it] == 0)
+                q.add(it);
+            }
+        }
     }
 }
