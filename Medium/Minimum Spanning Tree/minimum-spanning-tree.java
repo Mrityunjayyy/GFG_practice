@@ -45,8 +45,7 @@ class Solution{
             int v = edges[i][1];
             int wt = edges[i][2];
             
-            graph[u][v] = wt;
-            graph[v][u] = wt; // Assuming undirected graph
+            graph[u][v] = graph[v][u] = wt; // Assuming undirected graph
         }
 	    
 	    pq.add(new Pair(0,0));
@@ -62,11 +61,10 @@ class Solution{
 	        {
 	            continue;
 	        }
-	        else 
-	        {
+	        
 	            ans += curr.wt;
 	            vis[u] = true;
-	        }
+	        
 	        
 	       // ArrayList<ArrayList<Integer>> neighbours = adj.get(u);
 	        
