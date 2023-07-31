@@ -135,7 +135,8 @@ class Solution
               {
                   root = root.right;
               }
-              else 
+              else  //successor greater 
+              // else case if root.data > x.data this might be the solution
               {
                   successor = root;
                   root  = root.left;
