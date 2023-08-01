@@ -62,29 +62,22 @@ class Solution
     static int[] dijkstra(int V, ArrayList<ArrayList<ArrayList<Integer>>> adj, int S)
     {
         PriorityQueue<Pair> pq = new PriorityQueue<>();
-      //  boolean[] vis = new boolean[V];
         int[] ans = new int[V];
-        Arrays.fill(ans , 1_000_000_0);
-        
+        Arrays.fill(ans , Integer.MAX_VALUE);
         pq.add(new Pair(S , 0));
         ans[S] = 0;
-       // vis[S] = true;
         
         while(!pq.isEmpty())
         {
             Pair curr = pq.remove();
             int u = curr.v;
             
-            // if(vis[u] == true)
-            // continue;
-            
-           // vis[u] = true;
             ArrayList<ArrayList<Integer>> neighbour = adj.get(u);
             
-            for(ArrayList<Integer> edges : neighbour)
+            for(ArrayList<Integer> edge : neighbour)
             {
-                int vertex = edges.get(0);
-                int weight = edges.get(1);
+                int vertex = edge.get(0);
+                int weight = edge.get(1);
                 
                 if(ans[vertex] > ans[u] + weight)
                 {
@@ -94,6 +87,7 @@ class Solution
             }
         }
         
+        
         return ans;
     }
 }
@@ -101,13 +95,13 @@ class Solution
 
 class Pair implements Comparable<Pair> 
 {
-    int v;      //vertex
+    int v ;
     int wt;
     
     Pair(int v , int wt)
     {
         this.v = v;
-        this.wt  = wt;
+        this.wt = wt;
     }
     
     
