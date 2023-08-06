@@ -47,22 +47,22 @@ class Solution
 
         dp(s , t , m , n , dp);
         
-        HashSet<String> set = new HashSet<>();
-        int max = dp[m][n].get(0).length();
+        // HashSet<String> set = new HashSet<>();
+        // int max = dp[m][n].get(0).length();
 
-        for (int i = 0; i < m + 1; i++) {
-            for (int j = 0; j < n + 1; j++) {
-                for (String subseq : dp[i][j]) {
-                    if (subseq.length() == max) {
-                        set.add(subseq);
-                    }
-                }
-            }
-        }
+        // for (int i = 0; i < m + 1; i++) {
+        //     for (int j = 0; j < n + 1; j++) {
+        //         for (String subseq : dp[i][j]) {
+        //             if (subseq.length() == max) {
+        //                 set.add(subseq);
+        //             }
+        //         }
+        //     }
+        // }
 
-        List<String> ans = new ArrayList<>(set);
-        Collections.sort(ans);
-        return ans;
+        // List<String> ans = new ArrayList<>(set);
+        Collections.sort(dp[m][n]);
+        return dp[m][n];
         
     }
     
