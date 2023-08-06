@@ -48,19 +48,20 @@ class gfg
 
 class Solution 
 { 
-    static int[][] t = new int[1000][1000]; //n <= 1000 w <= 1000
+     // static int[][] t = new int[1000][1000]; //n <= 1000 w <= 1000
     
     //Function to return max value that can be put in knapsack of capacity W.
     static int knapSack(int W, int wt[], int val[], int n) 
     { 
-         for(int i = 0 ; i < n+1 ; i ++)
-         {
-             for(int j = 0 ; j < W+1 ; j++)
-             {
-                 if(i == 0 || j == 0)
-                  t[i][j] = 0;
-             }
-         }
+        int[][] t = new int[n+1][W+1];
+        //  for(int i = 0 ; i < n+1 ; i ++)
+        //  {
+        //      for(int j = 0 ; j < W+1 ; j++)
+        //      {
+        //          if(i == 0 || j == 0)
+        //           t[i][j] = 0;
+        //      }
+        //  }
          
          
          for(int i =1 ; i < n+1 ; i++)
@@ -73,7 +74,7 @@ class Solution
                      , t[i-1][j] );
                  }
                  
-                 else if(wt[i-1] > j)
+                 else 
                  {
                      t[i][j] = t[i-1][j];
                  }
