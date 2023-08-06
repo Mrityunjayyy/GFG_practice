@@ -38,63 +38,40 @@ class Solution
 {
     public ArrayList<String> permutation(String S)
     {
-       
-       ArrayList<String> al = new ArrayList<String>();
-       int n = S.length() -1 ;
-       
-       perm(al , S , 0 , n);
-       
-       
-       Collections.sort(al);
-       
-       return al;
-       
-       
-       
-       
-       
+        ArrayList<String> ans = new ArrayList<>();
+        permute(S, ans , 0 , S.length() -1);
+        Collections.sort(ans);
+        return ans;
     }
     
-    
-    
-    public void perm(ArrayList<String> al , String s , int l , int r)
-    { 
-        if(l ==r)
-        { 
-            
-            al.add(new String(s));
+    public void permute(String s , ArrayList<String> ans , int l , int r)
+    {
+        if(l == r)
+        {
+            ans.add(s);
             return;
-            
         }
         
-        else
-        { 
-            
-            for(int i = l ; i <= r ; i++)
-            { 
-                s =    swap(s , i , l);
-                perm(al , s , l +1 , r);
-                
-                s = swap(s , i , l);
-            }
+        for(int i = l ; i <= r ; i++)
+        {
+            s = swap(s , l , i);
+            permute(s , ans , l+1 , r);
+            s = swap(s , l , i);
         }
+        return;
     }
     
     
-    public String swap(String str , int i , int j)
-    { 
-        char[] arr = str.toCharArray();
+    public String swap(String s , int i , int j)
+    {
+        char[] a = s.toCharArray();
         
-        char temp = arr[i];
-        arr[i] = arr[j];
-        arr[j] = temp;
+        char temp = a[i];
+        a[i] = a[j];
+        a[j] = temp;
         
-        return String.valueOf(arr);
-    }
-    
-    
-    
-    
+        
+        return String.valueOf(a);
+     }
 	   
 }
-
