@@ -1,42 +1,41 @@
 //{ Driver Code Starts
-//Initial Template for Java
-
 import java.io.*;
-import java.util.*;
+import java.util.*; 
 
-class GFG
-{
-    public static void main(String args[])throws IOException
-    {
+class GFG{
+    public static void main(String args[]) throws IOException { 
         BufferedReader read = new BufferedReader(new InputStreamReader(System.in));
         int t = Integer.parseInt(read.readLine());
-        while(t-- > 0)
-        {
-            
-            String S = read.readLine().trim();
+        
+        while(t-- > 0){
+            String str = read.readLine();
+
             Solution ob = new Solution();
-            System.out.println(ob.findMinInsertions(S));
+            
+            System.out.println(ob.countMin(str));
         }
-    }
-}
+    } 
+} 
 // } Driver Code Ends
 
 
 //User function Template for Java
 
 class Solution{
-    int findMinInsertions(String S){
-        String b = new StringBuilder(S).reverse().toString();
+    static int countMin(String str)
+    {
+        String b = new StringBuilder(str).reverse().toString();
         
-        int m = S.length();
+        int m = str.length();
         int[][] t = new int[m+1][m+1];
         
-        int lcs = LCS(S , b , m , m , t);
+        int lcs = LCS(str , b , m , m , t);
         return m - lcs;
     }
     
     
-    public int LCS(String a , String b , int m , int n , int[][] t)
+      
+    public static int LCS(String a , String b , int m , int n , int[][] t)
     {
         for(int i =1 ; i < m+1 ; i++)
         {
