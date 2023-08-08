@@ -81,7 +81,7 @@ class Solution {
             fraction.add(x);
             fraction.add(y);
             
-            //1 - fraction
+            // 1 - fraction
             ArrayList<Integer> minusOne = new ArrayList<>();
             minusOne.add(z);
             minusOne.add(y);
