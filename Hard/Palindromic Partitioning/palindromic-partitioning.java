@@ -37,27 +37,30 @@ class Solution{
     
     public static int solve(String s , int i , int j)
     {
-        if(i >= j) return 0;
-        
         if(t[i][j] != -1) 
         return t[i][j];
         
-        if(isPalindrome(s , i , j) == true) return 0;
+        if(i >= j || isPalindrome(s , i, j))
+        {
+            t[i][j] = 0;
+            return 0;
+        } 
         
+           
         int min = Integer.MAX_VALUE;
         
         for(int k = i ; k <= j-1 ; k++)
         {
-            int left;
-            if(t[i][k] != -1)
-            {
-              left = t[i][k];   
-            }
-            else 
-            {
-                left = solve(s , i , k);
-                t[i][k] = left;
-            }
+            // int left;
+            // if(t[i][k] != -1)
+            // {
+            //   left = t[i][k];   
+            // }
+            // else 
+            // {
+            //     left = solve(s , i , k);
+            //     t[i][k] = left;
+            // }
             
             int right;
             if(t[k+1][j] != -1)
@@ -70,18 +73,21 @@ class Solution{
                 t[k+1][j] = right;
             }
             
-            
-            int temp_ans =  left + right  + 1;
+            if(isPalindrome(s , i , k) == true)
+            {
+            int temp_ans =  1 + right;
            
             if(temp_ans < min)
             {
                 min = temp_ans;
+            }
             }
         }
         
         return t[i][j] = min ;
     }
     
+   
     
     static boolean isPalindrome(String s , int i  , int j)
     {
@@ -90,8 +96,9 @@ class Solution{
         if(i == j) return true;
         
         if(palindrome[i][j] == true)  return true;
-    
         
+        
+    
         while(i < j)
         {
             if(s.charAt(i) != s.charAt(j))
