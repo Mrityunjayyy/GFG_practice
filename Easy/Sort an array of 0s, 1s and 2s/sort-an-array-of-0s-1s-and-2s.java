@@ -10,12 +10,10 @@ import java.util.*;
 
 class Solution
 {
-    
-    //dutch flag algorithm (netherlands)
-    //red - white - blue
     public static void sort012(int a[], int n)
     {
-        
+      
+       
         
        int[] nums = a; //galti se nums ka code likh dia
        int low = 0; 
@@ -52,6 +50,8 @@ class Solution
                     }
            }
        }
+    
+ 
     }
 }
 
