@@ -25,41 +25,36 @@ class GFG {
 
 
 class Solution
-{ 
+{
     //Function to find the length of longest common subsequence in two strings.
     static int lcs(int x, int y, String s1, String s2)
     {
+        int[][] t = new int[x+1][y+1];
         
-       int[][] t = new int[x+1][y+1];
-        for(int[] a : t)
-        {
-            Arrays.fill(a , -1);
-        }
+        lcs(s1 ,s2 , x , y , t);
         
         
-        dp(x , y , s1 , s2 , t);
         return t[x][y];
+        
     }
     
     
-    
-     static int dp(int x, int y, String s1, String s2 , int[][] t )
+    public static void lcs(String a , String b , int m , int n , int[][] t)
     {
-        
-        if(x == 0 || y == 0) return 0;
-        if(t[x][y] != -1) return t[x][y];
-        
-        
-        if(s1.charAt(x-1) == s2.charAt(y-1))
-        return t[x][y] = 1 + dp(x -1 , y -1 , s1 , s2 , t);
-        
-        else 
-        return t[x][y] = Math.max(dp(x -1 , y , s1 , s2 , t) , dp(x, y -1 , s1 , s2 , t));
+        for(int i = 1 ; i < m+1 ; i++)
+        {
+            for(int j = 1 ; j  < n+1 ; j++)
+            {
+                if(a.charAt(i-1) == b.charAt(j-1))
+                {
+                    t[i][j] = 1 + t[i-1][j-1];
+                }
+                else 
+                {
+                    t[i][j] = Math.max(t[i-1][j] , t[i][j-1]);
+                }
+            }
+        }
     }
-    
-    
-    
-    
-    
     
 }
