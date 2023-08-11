@@ -25,23 +25,34 @@ class GfG {
 // User function Template for Java
 
 class Solution {
+    static long[][] t = new long[1002][1002];
     public long count(int coins[], int N, int sum) {
-        
-        return subSets(coins , sum , N);
+         
+         for(int i = 0 ; i < t.length ; i++)
+         {
+             t[i][0] = 1;
+         }
+         
+         return dp(coins , sum , N);
     }
     
-    public long subSets(int[] coins , int sum , int n)
+    public long dp(int[] coins , int sum , int n)
     {
-        long[] t = new long[sum+1];
-        
-        t[0] = 1L;
-        
-          for (int i = 0; i < n; i++) {
-            for (int j = coins[i]; j <= sum; j++) {
-                t[j] += t[j - coins[i]];
+        for(int i = 1 ; i < n+1 ; i++)
+        {
+            for(int j = 1 ; j < sum +1 ; j++)
+            {
+                if(coins[i-1] <= j)
+                {
+                    t[i][j] = t[i][j - coins[i-1]] + t[i-1][j];
+                }
+                else 
+                {
+                    t[i][j] = t[i-1][j];
+                }
             }
         }
         
-        return t[sum];
+        return t[n][sum];
     }
-}
+} 
