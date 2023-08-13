@@ -61,6 +61,7 @@ class Solution
             }
         }
         
+    //    System.out.println(Arrays.toString(tail));
         return len;
     }
     
@@ -81,6 +82,7 @@ class Solution
             }
         }
         
+    
         return high;
         
     }
