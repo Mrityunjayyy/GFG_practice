@@ -57,30 +57,30 @@ class Main {
 
 class Solution
 {
+    static int mod = 1_000_000_00_7;
         
     long power(int N,int R)
     {
-        long a = N; 
-        long b = R;
-        long n = 1_000_000_00_7L;   // 10^9 + 7
-        long result = 1L;
+        return fastPower((long)N , (long)R);
+    
+    }
+    
+    long fastPower(long a , long b)
+    {
+        long res = 1l;
         
         while(b > 0)
-        { 
-            if( (b&1) != 0)  //bitwise check for odd
-            { 
-                result = (result % n * a % n) %n ;
+        {
+            if((b&1) != 0)
+            {
+                res = ( res%mod * a%mod)%mod;
             }
             
-            a = (a %n * a%n) %n;   // a  = a*a ;
-            
-            //b = b/2;
-            b = b >> 1;    // this is right shift by 1 meaning divide by 2 
-        } 
-            
+            a = ( a%mod * a%mod)%mod;
+            b = b >> 1;
+        }
         
-        return result;
-        
+        return res;
     }
 
 }
