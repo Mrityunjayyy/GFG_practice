@@ -37,52 +37,63 @@ public class Main {
 
 class Solution {
     int count(int[] arr, int n, int x) {
-        int i;
-      int j;
-          
-     
-      i = first(arr, 0, n-1, x, n);
-      
-      /* If x doesn't exist in arr[] then return -1 */
-      if(i == -1)
-        return 0;
-         
-      j = last(arr, i, n-1, x, n);    
-         
-      /* return count */
-      return j-i+1;
+       int first = firstOccurence(arr , x);
+       int last = lastOccurence(arr, x);
+       
+       return (first != -1 && last != -1) ? last - first + 1 : 0;
     }
     
-     static int first(int arr[], int low, int high, int x, int n)
+    
+    
+    public int firstOccurence(int[] arr, int x)
     {
-      if(high >= low)
-      {
-        /*low + (high - low)/2;*/ 
-        int mid = (low + high)/2; 
-        if( ( mid == 0 || x > arr[mid-1]) && arr[mid] == x)
-          return mid;
-        else if(x > arr[mid])
-          return first(arr, (mid + 1), high, x, n);
-        else
-          return first(arr, low, (mid -1), x, n);
-      }
-      return -1;
+        int low = 0;
+        int high = arr.length -1;
+        int res  = -1;
+        
+        while(low <= high)
+        {
+            int mid = low + (high - low)/2;
+            
+            if(arr[mid] == x)
+            {
+                res = mid;
+                high = mid -1;
+            }
+            
+            else if(x > arr[mid])
+            low = mid +1;
+            
+            else 
+            high = mid -1;
+        }
+        
+        return res;
     }
-     
-     
-      public int last(int arr[], int low, int high, int x, int n)
+    
+    public int lastOccurence(int[] arr, int x)
     {
-      if(high >= low)
-      {
-        /*low + (high - low)/2;*/     
-        int mid = (low + high)/2;
-        if( ( mid == n-1 || x < arr[mid+1]) && arr[mid] == x )
-          return mid;
-        else if(x < arr[mid])
-          return last(arr, low, (mid -1), x, n);
-        else
-          return last(arr, (mid + 1), high, x, n);     
-      }
-      return -1;
+        int low = 0;
+        int high = arr.length -1;
+        int res  = -1;
+        
+        while(low <= high)
+        {
+            int mid = low + (high - low)/2;
+            
+            if(arr[mid] == x)
+            {
+                res = mid;
+                low = mid +1;
+            }
+            
+            else if(x > arr[mid])
+            low = mid +1;
+            
+            else 
+            high = mid -1;
+        }
+        
+        return res;
     }
 }
