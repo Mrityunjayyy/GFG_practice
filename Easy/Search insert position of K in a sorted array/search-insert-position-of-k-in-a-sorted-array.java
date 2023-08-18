@@ -53,10 +53,11 @@ class Solution
             low = mid +1 ;
         }
         
-        if(res != -1) return res;
+        return (res == -1)? N : res;
+        // if(res != -1) return res;
         
-        int res2 = findCeil(Arr , Arr.length , k);
-        return res2+1;
+        // int res2 = findCeil(Arr , Arr.length , k);
+        // return res2+1;
     }
     
     public static int findCeil(int[] a , int n , int target)
