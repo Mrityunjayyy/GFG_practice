@@ -37,46 +37,54 @@ class GFG
 
 class Solution
 {
- 
+    int[] dx = {-1, -1, -1, 0, 0, 1, 1, 1};
+    int[] dy = {-1, 0 ,1, -1 ,1, -1 ,0 ,1};
     public int  Count(int[][] matrix)
     {
-        int count = 0;
-        for(int i = 0 ; i < matrix.length ; i++)
+        int ans = 0;
+        for(int i = 0 ; i <  matrix.length ; i++)
         {
-            for(int j = 0 ; j < matrix[i].length ; j++)
+            for(int j = 0 ; j < matrix[0].length ; j++)
             {
                 if(matrix[i][j] == 1)
                 {
-                    if(neighbours(matrix , i , j) == true)
-                    count++;
+                    if(count(i , j , matrix) == true)
+                    ans++;
                 }
             }
         }
         
-        return count;
+        return ans;
     }
     
-    public boolean neighbours(int[][] matrix , int row , int col)
+    public boolean isValid(int i , int j , int[][] matrix)
     {
-        int count = 0;
-          for (int i = row - 1; i <= row + 1; i++) 
-          {
-            for (int j = col - 1; j <= col + 1; j++)
-            {
-                if (i >= 0 && i < matrix.length &&
-                j >= 0 && j < matrix[0].length
-                && (i != row || j != col)) 
-                {
-                    int surroundingElement = matrix[i][j];
-                    if(surroundingElement == 0)
-                    {
-                        count++;
-                    }
-                }
-            }
+        int n = matrix.length;
+        int m = matrix[0].length;
+        
+        if(i < 0 || i >= n || j < 0 || j >= m ) 
+        return false;
+        if(matrix[i][j] == 1) return false;
+        
+        
+        
+        return true;
+    }
+    
+    public boolean count(int i , int j , int[][] matrix)
+    { 
+        int count= 0;
+       
+        for(int k = 0 ; k < 8 ; k++)
+        {
+           int x = i + dx[k];
+           int y = j + dy[k];
+           if(isValid(x , y , matrix))
+           {
+              count++;
+           }
         }
         
-        return ((count & 1) == 0 && count != 0) ? true : false;
-        
+        return  ( ((count &1) == 0) && count > 0)  ? true : false ; 
     }
 }
