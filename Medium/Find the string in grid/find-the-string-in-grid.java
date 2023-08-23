@@ -113,7 +113,7 @@ class Solution
     
     public boolean isValid(int i , int j ,  int index)
     {
-        if(index >= a.length()) return false;
+        //if(index >= a.length()) return false;
         
         int n = matrix.length;
         int m = matrix[0].length;
