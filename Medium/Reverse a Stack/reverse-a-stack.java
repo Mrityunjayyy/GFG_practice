@@ -47,37 +47,31 @@ class Solution
 { 
     static void reverse(Stack<Integer> s)
     {
-        
-        if(s.size() == 0)
-        return;
-        
-        Reverse(s);
-       
+        solve(s , s.size());
     }
     
+    public static void solve(Stack<Integer> s , int n)
+    {
+        if(n == 1)
+        return;
+        
+        int temp = s.pop();
+        solve(s , n-1);
+        insert(s , temp);
+    }
     
-    static void insert(Stack<Integer> s , int ele)
+    public static void insert(Stack<Integer> s , int temp)
     {
         if(s.size() == 0)
         {
-            s.push(ele);
+            s.push(temp);
             return;
         }
         
-        int top = s.pop();
-        insert(s , ele);
-        s.push(top);
-    }
-    
-    
-    static void Reverse(Stack<Integer> s)
-    {
-        if(s.size() == 1 )
-        return;
-        
-        int top = s.pop();
-        Reverse(s);
-        insert(s , top);
+        int val = s.pop();
+        insert(s , temp);
+        s.push(val);
         return;
     }
+    
 }
