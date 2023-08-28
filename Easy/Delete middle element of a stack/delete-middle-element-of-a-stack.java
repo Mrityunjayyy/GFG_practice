@@ -40,36 +40,36 @@ class GFG {
 
 //User function Template for Java
 
-//Recursion question -- Mrityunjay
 class Solution
 {
     //Function to delete middle element of a stack.
     public void deleteMid(Stack<Integer>s,int sizeOfStack){
+        if(s.size() == 0) return;
+        if(s.size() == 1)
+        { 
+            s.pop();
+            return;
+        }   
         
-        int k = sizeOfStack/2 + 1 ;
-        solve(s ,k);
+        int size = s.size();
+        int mid = size >> 1;
+        solve(s , mid);
     } 
     
     
-    public void solve(Stack<Integer> s , int k)
-    { 
-        if(k == 1 )
-       {
-           s.pop();
-           return;
-       }
-       
-       
-       int temp = s.peek();
-       s.pop();
-       solve(s , k -1);
-       
-       
-       //putting back the elements
-       s.push(temp);
-       
+    public void solve(Stack<Integer> s , int mid)
+    {
+        if(mid == 0)
+        {
+            s.pop();
+            return;
+        }
         
-        
+        int temp = s.peek();
+        s.pop();
+        solve(s , mid-1);
+        s.push(temp);
+        return;
     }
 }
 
