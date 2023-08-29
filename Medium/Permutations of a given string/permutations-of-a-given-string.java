@@ -31,66 +31,42 @@ class GFG
 
 class Solution {
     public List<String> find_permutation(String S) {
-        List<String> al = new ArrayList<String>();
-        int n = S.length() -1;
+      
+       List<String> ans = new ArrayList<>();
+       
+       solve(S , 0 , ans);
+       HashSet<String> set = new HashSet<String>(ans);
+       ans.clear();
+       ans.addAll(set);
+       Collections.sort(ans);
+       return ans;
+       
+    }
+    
+    public void solve(String s , int index ,List<String> ans)
+    {
+        if(index == s.length())
+        {
+            ans.add(s);
+            return;
+        }
         
-        perm(al  , S , 0  , n);
-        
-        Set<String> set = new HashSet<String>(al);
-        al.clear();
-        al.addAll(set);
-        
-        
-        
-        String[] arr = new String[al.size()];
-        arr = al.toArray(arr);
-        
-        Arrays.sort(arr);
-        
-        
-        return Arrays.asList(arr);
-        
+        for(int i = 0 ; i < s.length() ; i++)
+        {
+            s = swap(s , i , index);
+            solve(s , index +1 , ans);
+            s = swap(s , i , index);
+        }
     }
     
     
-    public void perm( List<String> al  ,String s , int l , int r)
-    { 
-     
-     if(l == r)
-     { 
-       al.add(new String(s));  
-       return;
-     }
-     
-     
-     else
-     { 
-         for(int i = l ; i <= r ; i++)
-         { 
-             s = swap(s , i , l);
-             perm(al , s , l+1 , r);
-             
-             s = swap(s,i,l);
-         }
-     }
-    }
-    
-    
-    
-    public String swap(String str , int i , int j)
-    { 
-        char[] arr = str.toCharArray();
-        
+    public String swap(String s , int i , int j)
+    {
+        char[] arr = s.toCharArray();
         char temp = arr[i];
         arr[i] = arr[j];
         arr[j] = temp;
         
-        return String.valueOf(arr);
+        return new String(arr);
     }
-    
-    
-    
-    
-    
-    
 }
