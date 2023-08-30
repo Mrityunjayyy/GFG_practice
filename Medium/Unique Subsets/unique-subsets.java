@@ -42,13 +42,13 @@ class solve
     //Function to find all possible unique subsets.
     public static ArrayList <ArrayList <Integer>> AllSubsets(int arr[], int n)
     {
-       ArrayList<ArrayList<Integer>> ans = new ArrayList<ArrayList<Integer>>();
-       ArrayList<Integer> al = new ArrayList<Integer>();
-       solve(ans , al , arr , 0);
+      
+       HashSet<ArrayList<Integer>> set = new HashSet();
        
-       HashSet set = new HashSet(ans);
-       ans.clear();
-       ans.addAll(set);
+       ArrayList<Integer> al = new ArrayList<Integer>();
+       solve(set , al , arr , 0);
+       
+       ArrayList<ArrayList<Integer>> ans = new ArrayList(set);
        
        Collections.sort(ans , (a,b) -> {
            
@@ -64,14 +64,15 @@ class solve
            return Integer.compare(a.size() , b.size());
        });
        
-       ans.add(0 , new ArrayList<Integer>());
+       ans.add(0 , new ArrayList<Integer>()); //null set at first position
+       
        return ans;
        
        
     }
     
     
-    public static void solve(ArrayList<ArrayList<Integer>> ans , ArrayList<Integer> al , int[] a , int i)
+    public static void solve(HashSet<ArrayList<Integer>> ans , ArrayList<Integer> al , int[] a , int i)
     {
         if(i == a.length)
         {
