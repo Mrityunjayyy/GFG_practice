@@ -31,42 +31,33 @@ class GFG
 
 class Solution {
     public List<String> find_permutation(String S) {
-      
-       List<String> ans = new ArrayList<>();
-       
-       solve(S , 0 , ans);
-       HashSet<String> set = new HashSet<String>(ans);
-       ans.clear();
-       ans.addAll(set);
-       Collections.sort(ans);
-       return ans;
-       
+        char[] arr = S.toCharArray();
+        Arrays.sort(arr);
+        S = new String(arr);
+        List<String> ans = new ArrayList<String>();
+       solve(ans , S , new boolean[S.length()] , new StringBuilder());
+      return ans;
     }
     
-    public void solve(String s , int index ,List<String> ans)
+    public void solve(List<String> ans , String s , boolean[] vis , StringBuilder sb)
     {
-        if(index == s.length())
+        if(sb.length() == s.length())
         {
-            ans.add(s);
+            ans.add(sb.toString());
             return;
         }
         
         for(int i = 0 ; i < s.length() ; i++)
         {
-            s = swap(s , i , index);
-            solve(s , index +1 , ans);
-            s = swap(s , i , index);
+            if(vis[i] == true || (i > 0 && s.charAt(i) == s.charAt(i-1) && vis[i-1] == true) )
+            continue;
+            
+            
+            vis[i] = true;
+            sb.append(s.charAt(i));
+            solve(ans , s , vis , sb);
+            sb.deleteCharAt(sb.length() -1);
+            vis[i] = false;
         }
-    }
-    
-    
-    public String swap(String s , int i , int j)
-    {
-        char[] arr = s.toCharArray();
-        char temp = arr[i];
-        arr[i] = arr[j];
-        arr[j] = temp;
-        
-        return new String(arr);
     }
 }
