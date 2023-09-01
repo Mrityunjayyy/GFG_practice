@@ -61,26 +61,26 @@ class Solution
         
     long power(int N,int R)
     {
-        return fastPower((long)N , (long)R);
-    
+        return pow((long)N , (long)R);
+        
     }
     
-    long fastPower(long a , long b)
+     public static long pow(long a , long b)
     {
-        long res = 1l;
+        long result = 1l;
         
         while(b > 0)
         {
-            if((b&1) != 0)
-            {
-                res = ( res%mod * a%mod)%mod;
-            }
-            
-            a = ( a%mod * a%mod)%mod;
-            b = b >> 1;
+        if((b&1) != 0)
+        {
+            result = (result%mod * a%mod)%mod;
         }
+
+        a = (a%mod * a%mod)%mod;
+        b = b >> 1;
+        }
+        return result;
         
-        return res;
     }
 
 }
