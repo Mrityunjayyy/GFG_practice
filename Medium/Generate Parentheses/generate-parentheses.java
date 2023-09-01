@@ -36,34 +36,28 @@ class GFG{
 //User function Template for Java
 
 class Solution {
-    
+    static int N;
     public List<String> AllParenthesis(int n) 
     {
-        ArrayList<String> al = new ArrayList<String>();
+        N = n;
+        List<String> ans = new ArrayList();
+        solve(ans , "" , 0 , 0);
         
-        pp(al , n , 0 , 0 , "");
-        
-        return al;
+        return ans;
     }
     
-    
-    public void pp(ArrayList<String> al ,int n , int oc , int cc , String ans)
+    public void solve(List<String> ans , String s , int oc , int cc)
     {
-        
-        if(oc == n && cc == n)
+        if(s.length() == 2*N)
         {
-            al.add(ans);
+            ans.add(s);
             return;
         }
         
-        if(oc < n)
-        {
-            pp(al , n , oc +1 , cc , ans + "(");
-        }
+        if(oc < N)
+        solve(ans , s + "(" , oc +1 , cc);
         
         if(oc > cc)
-        { 
-            pp(al , n , oc , cc +1  , ans + ")");
-        }
+        solve(ans , s + ")" , oc , cc+1);
     }
 }
