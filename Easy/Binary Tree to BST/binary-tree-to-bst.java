@@ -141,8 +141,9 @@ class Solution
         if(root == null) return;
         
         inorder(root.left , arr);
-        arr.add(root.data);
         inorder(root.right , arr);
+        arr.add(root.data);
+      
         
     }
     
