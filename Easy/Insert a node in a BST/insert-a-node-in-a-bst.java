@@ -101,37 +101,28 @@ class GFG {
 class Solution {
     // Function to insert a node in a BST.
     Node insert(Node root, int Key) {
-        Node newNode = new Node(Key);
-        Node parent = null;
-        Node curr = root;
-        
-        while(curr != null)
+        Node root2 = insertNode(root ,Key);
+        return root2;
+    }
+    
+    public Node insertNode(Node node , int val)
+    {
+        if(node == null) 
         {
-            parent = curr;
-            
-            if(curr.data > Key)
-            curr = curr.left;
-            
-            else 
-            curr = curr.right;
+            node = new Node(val);
+            return node;
         }
         
-        //The Key to be inserted is already present in the BST
-        //parent.data will be equal to the Key provided 
-        //dont do anything just return root;
-       if(parent.data == Key) return root;
+        if(val < node.data)
+        {
+            node.left = insertNode(node.left , val);
+        }
         
+        if(val > node.data)
+        {
+            node.right = insertNode(node.right , val);
+        }
         
-        //given binary search tree is null
-        if(parent == null) return newNode;
-        
-        if(parent.data > Key)
-        parent.left = newNode;
-        
-        else
-        parent.right = newNode;
-        
-        
-        return root;
+        return node;
     }
 }
