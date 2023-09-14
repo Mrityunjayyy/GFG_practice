@@ -26,32 +26,30 @@ class GfG
 
 
 class Solution{
- static int mod = 1_000_000_00_7;
+    long t[][];
+    int mod = 1_000_000_00_7;
 	public int perfectSum(int arr[],int n, int sum) 
 	{ 
-	    long[][] t = new long[n+1][sum+1];
+	    t = new long[n+1][sum+1];
+	    t[0][0] =1l; //initialization
 	    
-	    for(int i = 0; i < n+1 ; i++)
-	    {
-	        t[i][0] = 1;
-	    }
-	    
-	    for(int i = 1 ; i < n+1 ; i++)
+	    for(int i = 1 ; i < n+1; i++)
 	    {
 	        for(int j = 0 ; j < sum+1 ; j++)
 	        {
 	            if(arr[i-1] <= j)
 	            {
-	                t[i][j] = (t[i-1][j - arr[i-1]])%mod + (t[i-1][j])%mod ;
+	                t[i][j] = ( t[i-1][j] %mod + t[i-1][j - arr[i-1]]%mod ) %mod;
 	            }
 	            else 
 	            {
-	                t[i][j] = t[i-1][j];
+	                t[i][j] = t[i-1][j] % mod;
 	            }
 	        }
 	    }
 	    
 	    
-	    return  (int)t[n][sum]%mod;
+	    return (int)t[n][sum];
 	} 
+	
 }
