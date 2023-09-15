@@ -33,7 +33,7 @@ class GFG{
 class Solution{
     static int equalPartition(int N, int arr[])
     {
-        int sum = 0 ;
+         int sum = 0 ;
         for(int i : arr)
         {
             sum += i;
@@ -45,6 +45,7 @@ class Solution{
         
         return ( subsetSum(arr , sum/2 , arr.length) ) ? 1 : 0 ;
     }
+    
     
     public static boolean subsetSum(int[] arr  , int sum , int n)
     {
