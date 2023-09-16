@@ -12,28 +12,22 @@ class Solution
 {
     public static void sort012(int a[], int n)
     {
-      
-       
+        int left =0;
+        int mid = 0;
+        int right = n-1;
         
-       int[] nums = a; //galti se nums ka code likh dia
-       int low = 0; 
-       int high  = n -1 ;
-       int mid = 0;
-       
-       while(mid <= high)
-       {
-           switch(nums[mid])
-           { 
-               case 0:
-                   { 
-                       int temp = nums[low];
-                       nums[low] = nums[mid];
-                       nums[mid] = temp;
-                       low++;
-                       mid++;
-                       break;
-                   }
-                   
+        while(mid <= right)
+        {
+            switch(a[mid])
+            {
+                case 0:
+                    {
+                        swap(a , mid , left);
+                        left++;
+                        mid++;
+                        break;
+                    }
+                    
                 case 1:
                     {
                         mid++;
@@ -41,17 +35,20 @@ class Solution
                     }
                     
                 case 2:
-                    { 
-                        int temp = nums[high];
-                        nums[high] = nums[mid];
-                        nums[mid] = temp;
-                        high--;
+                    {
+                        swap(a , mid , right);
+                        right--;
                         break;
                     }
-           }
-       }
+            }
+        }
+    }
     
- 
+    public static void swap(int[] a , int i , int j)
+    {
+        int temp = a[i];
+        a[i] = a[j];
+        a[j] =temp;
     }
 }
 
