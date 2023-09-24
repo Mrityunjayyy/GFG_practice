@@ -24,25 +24,24 @@ class GFG {
 
 class Solution {
     public static ArrayList<Integer> duplicates(int arr[], int n) {
-        ArrayList<Integer> al = new ArrayList<Integer>();
-        for (int i = 0; i < n; i++) {
-            arr[arr[i] % n] = arr[arr[i] % n]  + n ;
+         int[] count = new int[n];  // Create a count array to store the occurrences of each element
+
+        // Count the occurrences of each element
+        for (int num : arr) {
+            count[num]++;
         }
-        
-        for(int i = 0 ; i < n ; i++)
-        { 
-            if(arr[i]/n > 1)
-            { 
-                al.add(i);
+
+        ArrayList<Integer> duplicates = new ArrayList<>();
+        for (int i = 0; i < n; i++) {
+            if (count[i] > 1) {
+                duplicates.add(i);
             }
         }
-        
-        
-        if(al.size() == 0)
-        { 
-            al.add(-1);
+
+        if (duplicates.isEmpty()) {
+            duplicates.add(-1);
         }
-        
-        return al;
+
+        return duplicates;
     }
 }
