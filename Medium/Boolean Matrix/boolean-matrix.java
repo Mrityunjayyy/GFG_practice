@@ -46,46 +46,42 @@ class GFG
 //User function Template for Java
 
 class Solution
-{  int[][] temp;
+{
     //Function to modify the matrix such that if a matrix cell matrix[i][j]
     //is 1 then all the cells in its ith row and jth column will become 1.
     void booleanMatrix(int matrix[][])
     {
         int n = matrix.length;
         int m = matrix[0].length;
-        temp = new int[n][m];
         
-        for(int i = 0 ; i < matrix.length ; i++)
-        {
-            for(int j = 0 ; j < matrix[i].length ; j++)
-            {
-                if(matrix[i][j] == 1)
-                {
-                    transform(i , j , n , m);
-                }
-            }
-        }
+        int[] rows = new int[n];
+        int[] cols = new int[m];
         
         for(int i = 0 ; i < n ; i++)
         {
             for(int j = 0 ; j < m ; j++)
             {
-                matrix[i][j] = temp[i][j];
+                if(matrix[i][j] == 1)
+                {
+                    rows[i] = 1;
+                    cols[j] = 1;
+                }
+            }
+        }
+        
+      
+        
+        for(int i = 0 ; i < n ; i++)
+        {
+            for(int j = 0 ; j < m ; j++)
+            {
+                if(rows[i] == 1 || cols[j] == 1)
+                {
+                   matrix[i][j] = 1;
+                }
             }
         }
     }
     
-    public void transform( int row , int col , int n , int m)
-    {
-      
-        for(int i = 0 ; i < n ; i++)
-        {
-            temp[i][col] = 1;
-        }
-        
-        for(int  i = 0 ; i < m ; i++)
-        {
-           temp[row][i] = 1; 
-        }
-    }
+    
 }
