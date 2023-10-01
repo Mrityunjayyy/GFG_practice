@@ -46,48 +46,37 @@ class Solution
     //traversal of the matrix in a clockwise manner.
     static ArrayList<Integer> boundaryTraversal(int matrix[][], int n, int m)
     {
+        ArrayList<Integer> al = new ArrayList();
         
-        int top  = 0 ;
-        int left = 0;
-        int bottom = n-1;
-        int right = m-1;
-        
-        ArrayList<Integer> ans = new ArrayList();
-        
-        
-        for(int i = left ; i <= right ; i++)
+        for(int i = 0 ; i < m ; i++)
         {
-            ans.add(matrix[top][i]);
+            al.add(matrix[0][i]);
         }
-        top++;
         
-        for(int i = top ; i <= bottom ; i++)
+        for(int i = 1 ; i < n ; i++)
         {
-            ans.add(matrix[i][right]);
+            al.add(matrix[i][m-1]);
         }
-        right--;
         
-        if(top <= bottom)
+        if(n > 1)
         {
-            //right to left
-            for(int i = right ; i >= left ; i--)
+            for(int i = m-2 ; i > -1 ; i-- )
             {
-                ans.add(matrix[bottom][i]);
+                al.add(matrix[n-1][i]);
             }
-            bottom--;
         }
         
-        if(left <= right)
+        
+        if(m > 1)
         {
-            //bottom to top
-            for(int i = bottom ; i >= top ; i--)
+            for(int i = n-2 ; i >= 1 ; i--)
             {
-                ans.add(matrix[i][left]);
-            }
-            left++;
+                al.add(matrix[i][0]);
+            } 
         }
         
+      
         
-        return ans;
+        return al;
     }
 }
